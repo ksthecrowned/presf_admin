@@ -5,12 +5,15 @@ import SignIn from './pages/Authentication/SignIn';
 import SignUp from './pages/Authentication/SignUp';
 import Calendar from './pages/Calendar';
 import Chart from './pages/Chart';
-import ECommerce from './pages/Dashboard/ECommerce';
+import MainComponent from './pages/Dashboard/MainComponent';
 import FormElements from './pages/Form/FormElements';
 import FormLayout from './pages/Form/FormLayout';
 import Profile from './pages/Profile';
 import Settings from './pages/Settings';
 import Tables from './pages/Tables';
+import SendRequests from './pages/SendRequests';
+import WithdrawRequests from './pages/WithdrawRequests';
+import Services from './pages/Services';
 import Alerts from './pages/UiElements/Alerts';
 import Buttons from './pages/UiElements/Buttons';
 
@@ -35,12 +38,15 @@ function App() {
   ) : (
     <>
       <Routes>
-        <Route path="/" element={<ECommerce />} />
+        <Route path="/" element={<MainComponent />} />
         <Route path="/calendar" element={<Calendar />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/forms/form-elements" element={<FormElements />} />
         <Route path="/forms/form-layout" element={<FormLayout />} />
         <Route path="/tables" element={<Tables />} />
+        <Route path="/send-requests" element={<SendRequests />} />
+        <Route path="/withdraw-requests" element={<WithdrawRequests />} />
+        <Route path="/services" element={<Services />} />
         <Route path="/settings" element={<Settings />} />
         <Route path="/chart" element={<Chart />} />
         <Route path="/ui/alerts" element={<Alerts />} />

@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
-import Logo from '../images/logo/logo.svg';
+import Logo from '../images/logo/logo-icon.svg';
 import SidebarLinkGroup from './SidebarLinkGroup';
 
 interface SidebarProps {
@@ -65,7 +65,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
       {/* <!-- SIDEBAR HEADER --> */}
       <div className="flex items-center justify-between gap-2 px-6 py-5.5 lg:py-6.5">
         <NavLink to="/">
-          <img src={Logo} alt="Logo" />
+          <img className="h-20" src={Logo} alt="Logo" />
         </NavLink>
 
         <button
@@ -94,7 +94,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
 
       <div className="no-scrollbar flex flex-col overflow-y-auto duration-300 ease-linear">
         {/* <!-- Sidebar Menu --> */}
-        <nav className="mt-5 py-4 px-4 lg:mt-9 lg:px-6">
+        <nav className="mt-5 py-4 px-4 lg:mt-0 lg:px-6">
           {/* <!-- Menu Group --> */}
           <div>
             <h3 className="mb-4 ml-4 text-sm font-semibold text-bodydark2">
@@ -103,101 +103,131 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
 
             <ul className="mb-6 flex flex-col gap-1.5">
               {/* <!-- Menu Item Dashboard --> */}
-              <SidebarLinkGroup
-                activeCondition={
-                  pathname === '/' || pathname.includes('dashboard')
-                }
-              >
-                {(handleClick, open) => {
-                  return (
-                    <React.Fragment>
-                      <NavLink
-                        to="#"
-                        className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${
-                          (pathname === '/' ||
-                            pathname.includes('dashboard')) &&
-                          'bg-graydark dark:bg-meta-4'
-                        }`}
-                        onClick={(e) => {
-                          e.preventDefault();
-                          sidebarExpanded
-                            ? handleClick()
-                            : setSidebarExpanded(true);
-                        }}
-                      >
-                        <svg
-                          className="fill-current"
-                          width="18"
-                          height="18"
-                          viewBox="0 0 18 18"
-                          fill="none"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path
-                            d="M6.10322 0.956299H2.53135C1.5751 0.956299 0.787598 1.7438 0.787598 2.70005V6.27192C0.787598 7.22817 1.5751 8.01567 2.53135 8.01567H6.10322C7.05947 8.01567 7.84697 7.22817 7.84697 6.27192V2.72817C7.8751 1.7438 7.0876 0.956299 6.10322 0.956299ZM6.60947 6.30005C6.60947 6.5813 6.38447 6.8063 6.10322 6.8063H2.53135C2.2501 6.8063 2.0251 6.5813 2.0251 6.30005V2.72817C2.0251 2.44692 2.2501 2.22192 2.53135 2.22192H6.10322C6.38447 2.22192 6.60947 2.44692 6.60947 2.72817V6.30005Z"
-                            fill=""
-                          />
-                          <path
-                            d="M15.4689 0.956299H11.8971C10.9408 0.956299 10.1533 1.7438 10.1533 2.70005V6.27192C10.1533 7.22817 10.9408 8.01567 11.8971 8.01567H15.4689C16.4252 8.01567 17.2127 7.22817 17.2127 6.27192V2.72817C17.2127 1.7438 16.4252 0.956299 15.4689 0.956299ZM15.9752 6.30005C15.9752 6.5813 15.7502 6.8063 15.4689 6.8063H11.8971C11.6158 6.8063 11.3908 6.5813 11.3908 6.30005V2.72817C11.3908 2.44692 11.6158 2.22192 11.8971 2.22192H15.4689C15.7502 2.22192 15.9752 2.44692 15.9752 2.72817V6.30005Z"
-                            fill=""
-                          />
-                          <path
-                            d="M6.10322 9.92822H2.53135C1.5751 9.92822 0.787598 10.7157 0.787598 11.672V15.2438C0.787598 16.2001 1.5751 16.9876 2.53135 16.9876H6.10322C7.05947 16.9876 7.84697 16.2001 7.84697 15.2438V11.7001C7.8751 10.7157 7.0876 9.92822 6.10322 9.92822ZM6.60947 15.272C6.60947 15.5532 6.38447 15.7782 6.10322 15.7782H2.53135C2.2501 15.7782 2.0251 15.5532 2.0251 15.272V11.7001C2.0251 11.4188 2.2501 11.1938 2.53135 11.1938H6.10322C6.38447 11.1938 6.60947 11.4188 6.60947 11.7001V15.272Z"
-                            fill=""
-                          />
-                          <path
-                            d="M15.4689 9.92822H11.8971C10.9408 9.92822 10.1533 10.7157 10.1533 11.672V15.2438C10.1533 16.2001 10.9408 16.9876 11.8971 16.9876H15.4689C16.4252 16.9876 17.2127 16.2001 17.2127 15.2438V11.7001C17.2127 10.7157 16.4252 9.92822 15.4689 9.92822ZM15.9752 15.272C15.9752 15.5532 15.7502 15.7782 15.4689 15.7782H11.8971C11.6158 15.7782 11.3908 15.5532 11.3908 15.272V11.7001C11.3908 11.4188 11.6158 11.1938 11.8971 11.1938H15.4689C15.7502 11.1938 15.9752 11.4188 15.9752 11.7001V15.272Z"
-                            fill=""
-                          />
-                        </svg>
-                        Dashboard
-                        <svg
-                          className={`absolute right-4 top-1/2 -translate-y-1/2 fill-current ${
-                            open && 'rotate-180'
-                          }`}
-                          width="20"
-                          height="20"
-                          viewBox="0 0 20 20"
-                          fill="none"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path
-                            fillRule="evenodd"
-                            clipRule="evenodd"
-                            d="M4.41107 6.9107C4.73651 6.58527 5.26414 6.58527 5.58958 6.9107L10.0003 11.3214L14.4111 6.91071C14.7365 6.58527 15.2641 6.58527 15.5896 6.91071C15.915 7.23614 15.915 7.76378 15.5896 8.08922L10.5896 13.0892C10.2641 13.4147 9.73651 13.4147 9.41107 13.0892L4.41107 8.08922C4.08563 7.76378 4.08563 7.23614 4.41107 6.9107Z"
-                            fill=""
-                          />
-                        </svg>
-                      </NavLink>
-                      {/* <!-- Dropdown Menu Start --> */}
-                      <div
-                        className={`translate transform overflow-hidden ${
-                          !open && 'hidden'
-                        }`}
-                      >
-                        <ul className="mt-4 mb-5.5 flex flex-col gap-2.5 pl-6">
-                          <li>
-                            <NavLink
-                              to="/"
-                              className={({ isActive }) =>
-                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white ' +
-                                (isActive && '!text-white')
-                              }
-                            >
-                              eCommerce
-                            </NavLink>
-                          </li>
-                        </ul>
-                      </div>
-                      {/* <!-- Dropdown Menu End --> */}
-                    </React.Fragment>
-                  );
-                }}
-              </SidebarLinkGroup>
+              <li>
+                <NavLink
+                  to="/"
+                  className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${
+                    (pathname === '/' ||
+                      pathname.includes('dashboard')) &&
+                    'bg-graydark dark:bg-meta-4'
+                  }`}
+                >
+                  <svg
+                    className="fill-current"
+                    width="18"
+                    height="18"
+                    viewBox="0 0 18 18"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M6.10322 0.956299H2.53135C1.5751 0.956299 0.787598 1.7438 0.787598 2.70005V6.27192C0.787598 7.22817 1.5751 8.01567 2.53135 8.01567H6.10322C7.05947 8.01567 7.84697 7.22817 7.84697 6.27192V2.72817C7.8751 1.7438 7.0876 0.956299 6.10322 0.956299ZM6.60947 6.30005C6.60947 6.5813 6.38447 6.8063 6.10322 6.8063H2.53135C2.2501 6.8063 2.0251 6.5813 2.0251 6.30005V2.72817C2.0251 2.44692 2.2501 2.22192 2.53135 2.22192H6.10322C6.38447 2.22192 6.60947 2.44692 6.60947 2.72817V6.30005Z"
+                      fill=""
+                    />
+                    <path
+                      d="M15.4689 0.956299H11.8971C10.9408 0.956299 10.1533 1.7438 10.1533 2.70005V6.27192C10.1533 7.22817 10.9408 8.01567 11.8971 8.01567H15.4689C16.4252 8.01567 17.2127 7.22817 17.2127 6.27192V2.72817C17.2127 1.7438 16.4252 0.956299 15.4689 0.956299ZM15.9752 6.30005C15.9752 6.5813 15.7502 6.8063 15.4689 6.8063H11.8971C11.6158 6.8063 11.3908 6.5813 11.3908 6.30005V2.72817C11.3908 2.44692 11.6158 2.22192 11.8971 2.22192H15.4689C15.7502 2.22192 15.9752 2.44692 15.9752 2.72817V6.30005Z"
+                      fill=""
+                    />
+                    <path
+                      d="M6.10322 9.92822H2.53135C1.5751 9.92822 0.787598 10.7157 0.787598 11.672V15.2438C0.787598 16.2001 1.5751 16.9876 2.53135 16.9876H6.10322C7.05947 16.9876 7.84697 16.2001 7.84697 15.2438V11.7001C7.8751 10.7157 7.0876 9.92822 6.10322 9.92822ZM6.60947 15.272C6.60947 15.5532 6.38447 15.7782 6.10322 15.7782H2.53135C2.2501 15.7782 2.0251 15.5532 2.0251 15.272V11.7001C2.0251 11.4188 2.2501 11.1938 2.53135 11.1938H6.10322C6.38447 11.1938 6.60947 11.4188 6.60947 11.7001V15.272Z"
+                      fill=""
+                    />
+                    <path
+                      d="M15.4689 9.92822H11.8971C10.9408 9.92822 10.1533 10.7157 10.1533 11.672V15.2438C10.1533 16.2001 10.9408 16.9876 11.8971 16.9876H15.4689C16.4252 16.9876 17.2127 16.2001 17.2127 15.2438V11.7001C17.2127 10.7157 16.4252 9.92822 15.4689 9.92822ZM15.9752 15.272C15.9752 15.5532 15.7502 15.7782 15.4689 15.7782H11.8971C11.6158 15.7782 11.3908 15.5532 11.3908 15.272V11.7001C11.3908 11.4188 11.6158 11.1938 11.8971 11.1938H15.4689C15.7502 11.1938 15.9752 11.4188 15.9752 11.7001V15.272Z"
+                      fill=""
+                    />
+                  </svg>
+                  Tableau de bord
+                </NavLink>
+              </li>
               {/* <!-- Menu Item Dashboard --> */}
 
-              {/* <!-- Menu Item Calendar --> */}
+              {/* <!-- Menu Item Send requests --> */}
               <li>
+                <NavLink
+                  to="/send-requests"
+                  className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${
+                    pathname.includes('send-requests') &&
+                    'bg-graydark dark:bg-meta-4'
+                  }`}
+                >
+                  <svg 
+                    className="fill-current"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 36 36"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <g data-name="Layer 51">
+                      <path d="M28,15H4a1,1,0,0,0-1,1V28a1,1,0,0,0,1,1H28a1,1,0,0,0,1-1V16A1,1,0,0,0,28,15ZM27,27H5V17H27Z"/>
+                      <path d="M16 26a4 4 0 10-4-4A4 4 0 0016 26zm0-6a2 2 0 11-2 2A2 2 0 0116 20zM12.707 8.707L15 6.414V13a1 1 0 002 0V6.414l2.293 2.293a1 1 0 001.414-1.414l-4-3.995-.055-.052a1 1 0 00-.529-.238h0A.941.941 0 0015.935 3h0a1 1 0 00-.64.291l-4 4a1 1 0 001.414 1.414z"/>
+                        </g>
+                  </svg>
+                  Demandes d'envois
+                  <span className="absolute right-8 top-2 z-1 h-3 w-3 rounded-full bg-meta-1">
+                    <span className="absolute -z-1 inline-flex h-full w-full animate-ping rounded-full bg-meta-1 opacity-75"></span>
+                  </span>
+                </NavLink>
+              </li>
+              {/* <!-- Menu Item Send requests --> */}
+
+              {/* <!-- Menu Item Withdraw requests --> */}
+              <li>
+                <NavLink
+                  to="/withdraw-requests"
+                  className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${
+                    pathname.includes('withdraw-requests') &&
+                    'bg-graydark dark:bg-meta-4'
+                  }`}
+                >
+                  <svg 
+                    className="fill-current"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 36 36"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <circle cx="16" cy="19" r="1"/>
+                    <polygon points="0 6 0 14.4 1.6 16 5 16 5 11 27 11 27 16 30.4 16 32 14.4 32 6"/>
+                    <path d="M23,21c-1.7,0-3,1.3-3,3h-8c0-1.7-1.3-3-3-3v-9H7v14h18V12h-2V21z"/>
+                    <path d="M20,13c0-0.4-0.1-0.7-0.2-1h-7.5c-0.1,0.3-0.2,0.6-0.2,1c0,1.7,1.8,3,4,3S20,14.7,20,13z"/>
+                  </svg>
+                  Demandes de retraits
+                  <span className="absolute right-5 top-2 z-1 h-3 w-3 rounded-full bg-meta-1">
+                    <span className="absolute -z-1 inline-flex h-full w-full animate-ping rounded-full bg-meta-1 opacity-75"></span>
+                  </span>
+                </NavLink>
+              </li>
+              {/* <!-- Menu Item Withdraw requests --> */}
+
+              {/* <!-- Menu Item Services --> */}
+              <li>
+                <NavLink
+                  to="/services"
+                  className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${
+                    pathname.includes('services') &&
+                    'bg-graydark dark:bg-meta-4'
+                  }`}
+                >
+                  <svg 
+                    className="fill-current"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 80 80"
+                  >
+                    <path d="M61 26.54a6.55 6.55 0 0 1-4.633-11.183 1 1 0 0 0 0-1.414l-6.31-6.31a1 1 0 0 0-1.414 0A6.379 6.379 0 0 1 44.06 9.57 6.522 6.522 0 0 1 37.46 3a1 1 0 0 0-1-1h-8.92a1 1 0 0 0-1 1 6.522 6.522 0 0 1-6.6 6.57 6.379 6.379 0 0 1-4.583-1.937 1 1 0 0 0-1.414 0l-6.31 6.31a1 1 0 0 0 0 1.414A6.366 6.366 0 0 1 9.57 19.94 6.523 6.523 0 0 1 3 26.54a1 1 0 0 0-1 1v8.92a1 1 0 0 0 1 1 6.523 6.523 0 0 1 6.57 6.6 6.366 6.366 0 0 1-1.937 4.583 1 1 0 0 0 0 1.414l6.31 6.31a1 1 0 0 0 1.414 0 6.379 6.379 0 0 1 4.583-1.937 6.6 6.6 0 0 1 2.66.556l.8-1.832a8.577 8.577 0 0 0-3.46-.724 8.391 8.391 0 0 0-5.251 1.855l-4.974-4.974a8.385 8.385 0 0 0 1.855-5.251A8.514 8.514 0 0 0 4 35.512v-7.024a8.514 8.514 0 0 0 7.57-8.548 8.385 8.385 0 0 0-1.855-5.251l4.974-4.974a8.391 8.391 0 0 0 5.251 1.855A8.515 8.515 0 0 0 28.488 4h7.024a8.515 8.515 0 0 0 8.548 7.57 8.391 8.391 0 0 0 5.251-1.855l4.974 4.974A8.556 8.556 0 0 0 60 28.485v7.027a8.514 8.514 0 0 0-7.57 8.548 8.385 8.385 0 0 0 1.855 5.251l-4.974 4.974a8.582 8.582 0 0 0-8.711-1.131l.8 1.832a6.6 6.6 0 0 1 2.66-.556 6.379 6.379 0 0 1 4.583 1.937 1 1 0 0 0 1.414 0l6.31-6.31a1 1 0 0 0 0-1.414 6.366 6.366 0 0 1-1.937-4.583 6.523 6.523 0 0 1 6.57-6.6 1 1 0 0 0 1-1v-8.92a1 1 0 0 0-1-1Z"/>
+                    <path d="M23 39h4.41v-2H24V23h16v14h-3.41v2H41a1 1 0 0 0 1-1V23h1a1 1 0 0 0 .414-1.91l-11-5a1 1 0 0 0-.828 0l-11 5A1 1 0 0 0 21 23h1v15a1 1 0 0 0 1 1Zm9-20.9 6.384 2.9H25.616Z"/><path d="M52 32a20 20 0 1 0-29.474 17.611l.948-1.762a18 18 0 1 1 17.052 0l.948 1.762A19.97 19.97 0 0 0 52 32Z"/>
+                    <path d="M35 28.8v-.3a2.533 2.533 0 0 0-2-2.411V25h-2v1.089a2.533 2.533 0 0 0-2 2.411 2.591 2.591 0 0 0 2.667 2.5h.666c.361 0 .667.229.667.5s-.306.5-.667.5h-.666c-.361 0-.667-.229-.667-.5v-.3h-2v.3a2.533 2.533 0 0 0 2 2.411V35h2v-1.089a2.533 2.533 0 0 0 2-2.411 2.591 2.591 0 0 0-2.667-2.5h-.666c-.361 0-.667-.229-.667-.5s.306-.5.667-.5h.666c.361 0 .667.229.667.5v.3zm.537 22.035a6 6 0 1 0-7.074 0A8 8 0 0 0 24 58v3a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-3a8 8 0 0 0-4.463-7.165zM28 46a4 4 0 1 1 4 4 4 4 0 0 1-4-4zm10 14H26v-2a6 6 0 0 1 12 0z"/>
+                  </svg>
+                  Autres services
+                </NavLink>
+              </li>
+              {/* <!-- Menu Item Services --> */}
+
+              {/* <!-- Menu Item Calendar --> */}
+              {/* <li>
                 <NavLink
                   to="/calendar"
                   className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${
@@ -220,11 +250,11 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                   </svg>
                   Calendar
                 </NavLink>
-              </li>
+              </li> */}
               {/* <!-- Menu Item Calendar --> */}
 
               {/* <!-- Menu Item Profile --> */}
-              <li>
+              {/* <li>
                 <NavLink
                   to="/profile"
                   className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${
@@ -250,11 +280,11 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                   </svg>
                   Profile
                 </NavLink>
-              </li>
+              </li> */}
               {/* <!-- Menu Item Profile --> */}
 
               {/* <!-- Menu Item Forms --> */}
-              <SidebarLinkGroup
+              {/* <SidebarLinkGroup
                 activeCondition={
                   pathname === '/forms' || pathname.includes('forms')
                 }
@@ -323,9 +353,9 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                             fill=""
                           />
                         </svg>
-                      </NavLink>
+                      </NavLink> */}
                       {/* <!-- Dropdown Menu Start --> */}
-                      <div
+                      {/* <div
                         className={`translate transform overflow-hidden ${
                           !open && 'hidden'
                         }`}
@@ -354,16 +384,16 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                             </NavLink>
                           </li>
                         </ul>
-                      </div>
+                      </div> */}
                       {/* <!-- Dropdown Menu End --> */}
-                    </React.Fragment>
+                    {/* </React.Fragment>
                   );
                 }}
-              </SidebarLinkGroup>
+              </SidebarLinkGroup> */}
               {/* <!-- Menu Item Forms --> */}
 
               {/* <!-- Menu Item Tables --> */}
-              <li>
+              {/* <li>
                 <NavLink
                   to="/tables"
                   className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${
@@ -397,9 +427,18 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                   </svg>
                   Tables
                 </NavLink>
-              </li>
+              </li> */}
               {/* <!-- Menu Item Tables --> */}
+            </ul>
+          </div>
 
+          {/* <!-- Others Group --> */}
+          <div>
+            <h3 className="mb-4 ml-4 text-sm font-semibold text-bodydark2">
+              AUTRES
+            </h3>
+
+            <ul className="mb-6 flex flex-col gap-1.5">
               {/* <!-- Menu Item Settings --> */}
               <li>
                 <NavLink
@@ -438,22 +477,13 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                       </clipPath>
                     </defs>
                   </svg>
-                  Settings
+                  Réglages
                 </NavLink>
               </li>
               {/* <!-- Menu Item Settings --> */}
-            </ul>
-          </div>
 
-          {/* <!-- Others Group --> */}
-          <div>
-            <h3 className="mb-4 ml-4 text-sm font-semibold text-bodydark2">
-              OTHERS
-            </h3>
-
-            <ul className="mb-6 flex flex-col gap-1.5">
               {/* <!-- Menu Item Chart --> */}
-              <li>
+              {/* <li>
                 <NavLink
                   to="/chart"
                   className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${
@@ -491,11 +521,11 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                   </svg>
                   Chart
                 </NavLink>
-              </li>
+              </li> */}
               {/* <!-- Menu Item Chart --> */}
 
               {/* <!-- Menu Item Ui Elements --> */}
-              <SidebarLinkGroup
+              {/* <SidebarLinkGroup
                 activeCondition={pathname === '/ui' || pathname.includes('ui')}
               >
                 {(handleClick, open) => {
@@ -565,9 +595,9 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                             fill=""
                           />
                         </svg>
-                      </NavLink>
+                      </NavLink> */}
                       {/* <!-- Dropdown Menu Start --> */}
-                      <div
+                      {/* <div
                         className={`translate transform overflow-hidden ${
                           !open && 'hidden'
                         }`}
@@ -596,16 +626,16 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                             </NavLink>
                           </li>
                         </ul>
-                      </div>
+                      </div> */}
                       {/* <!-- Dropdown Menu End --> */}
-                    </React.Fragment>
+                    {/* </React.Fragment>
                   );
                 }}
-              </SidebarLinkGroup>
+              </SidebarLinkGroup> */}
               {/* <!-- Menu Item Ui Elements --> */}
 
               {/* <!-- Menu Item Auth Pages --> */}
-              <SidebarLinkGroup
+              {/* <SidebarLinkGroup
                 activeCondition={
                   pathname === '/auth' || pathname.includes('auth')
                 }
@@ -673,9 +703,9 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                             fill=""
                           />
                         </svg>
-                      </NavLink>
+                      </NavLink> */}
                       {/* <!-- Dropdown Menu Start --> */}
-                      <div
+                      {/* <div
                         className={`translate transform overflow-hidden ${
                           !open && 'hidden'
                         }`}
@@ -704,12 +734,12 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                             </NavLink>
                           </li>
                         </ul>
-                      </div>
+                      </div> */}
                       {/* <!-- Dropdown Menu End --> */}
-                    </React.Fragment>
+                    {/* </React.Fragment>
                   );
                 }}
-              </SidebarLinkGroup>
+              </SidebarLinkGroup> */}
               {/* <!-- Menu Item Auth Pages --> */}
             </ul>
           </div>
